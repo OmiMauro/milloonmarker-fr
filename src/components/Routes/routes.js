@@ -1,3 +1,5 @@
+import { ROLES } from '../../constants'
+
 import AboutPage from '../../pages/AboutPage'
 import HomePage from '../../pages/HomePage'
 import LoginPage from '../../pages/LoginPage'
@@ -7,32 +9,66 @@ import Error404Page from '../../pages/Error404Page'
 import ContactPage from '../../pages/ContactPage'
 
 // private routes
-import Dashboard from '../../containers/Dashboard/Dashboard'
+import Backoffice from '../../containers/Backoffice/Backoffice'
 import ProfileFormContainer from '../../containers/Profile/ProfileFormContainer'
 import ProfileContainer from '../../containers/Profile/ProfileContainer'
 
-export const routesPublics = [
+const routesPublics = [
 	{ path: '/', element: HomePage },
 	{ path: 'login', element: LoginPage },
 	{ path: 'register', element: RegisterPage },
 	{ path: 'about', element: AboutPage },
 	{ path: 'contact', element: ContactPage },
-	{ path: 'services', element: ServicePage },
-
+	/* { path: 'services', element: ServicePage },
+	{ path: 'unauthorized', element: Error401Page },
+	{ path: 'forgot-password', element: ForgotPasswordPage },
+	{ path: 'reset-password/:token', element: ResetPasswordPage },
+	{ path: 'confirm-email/:token', element: ConfirmEmailPage }, */
 	{ path: '*', element: Error404Page },
 ]
 
-export const routesPrivates = [
+const routesPrivates = [
 	{
 		path: '',
-		element: Dashboard,
+		element: Backoffice,
+		allowedRoles: [ROLES.ADMIN, ROLES.STANDARD],
+	},
+	/* 
+	{
+		path: 'users',
+		element: UsersListContainer,
+		allowedRoles: [ROLES.ADMIN],
+	},
+	{
+		path: 'users/create',
+		element: UsersContainer,
+		allowedRoles: [ROLES.ADMIN],
+	},
+	{
+		path: 'users/edit/:id',
+		element: UsersContainer,
+		allowedRoles: [ROLES.ADMIN],
+	},
+	{
+		path: 'organizations',
+		element: OrganizationContainer,
+		allowedRoles: [ROLES.ADMIN],
+	},
+	{
+		path: 'organizations/edit/:id',
+		element: OrganizationFormContainer,
+		allowedRoles: [ROLES.ADMIN],
 	},
 	{
 		path: 'profile',
 		element: ProfileContainer,
+		allowedRoles: [ROLES.ADMIN, ROLES.STANDARD],
 	},
 	{
 		path: 'profile/edit/:id',
 		element: ProfileFormContainer,
-	},
+		allowedRoles: [ROLES.ADMIN, ROLES.STANDARD],
+	}, */
 ]
+
+export { routesPrivates, routesPublics }

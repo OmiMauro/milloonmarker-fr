@@ -1,10 +1,10 @@
-import { selectorAuth, isAuth, logout } from '../../redux/slices/auth-slice'
+import { selectorAuth, isAuth, logout } from '../../redux/slices/auth-slices'
 import { useDispatch, useSelector } from 'react-redux'
 import { Outlet, Navigate, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import jwt_decode from 'jwt-decode'
 
-const ProtectedRoutes = ({}) => {
+const ProtectedRoutes = ({ allowedRoles }) => {
 	const { auth, token, user } = useSelector(selectorAuth)
 	const dispatch = useDispatch()
 	const location = useLocation()
