@@ -1,10 +1,15 @@
 import React from 'react'
-/* import './styles.css' */
+import './styles.css'
 import { Link } from 'react-router-dom'
 import logo from './favicon.png'
+
 const Navbar = () => {
+	let auth, dispatch, logout
 	return (
-		<nav className="navbar navbar-expand-lg py-3 shadow-sm" id="mainNav">
+		<nav
+			className="navbar navbar-expand-lg py-3 shadow-sm bg-white py-3"
+			id="mainNav"
+		>
 			<div className="container">
 				<button
 					className="navbar-toggler"
@@ -30,26 +35,44 @@ const Navbar = () => {
 								Contacto
 							</Link>
 						</li>
-						<Link
-							className="navbar-brand fw-bold fs-4 mx-auto text-uppercase"
-							to="/"
-						>
-							<img
-								src={logo}
-								alt="logo-organization "
-								className="d-none d-lg-block"
-							></img>{' '}
-							<i className="fa fa-home d-block d-lg-none"></i>
-						</Link>
-						<div className="">
-							<Link className="btn btn-outline-dark " to="/login">
-								Login
-							</Link>
-							<Link className="btn btn-outline-dark " to="/register">
-								Register
-							</Link>
-						</div>
 					</ul>
+					<Link
+						className="navbar-brand fw-bold fs-4 mx-auto text-uppercase"
+						to="/"
+					>
+						<img
+							src={logo}
+							alt="logo-organization "
+							className="d-none d-lg-block"
+						></img>{' '}
+						<i className="fa fa-home d-block d-lg-none"></i>
+					</Link>
+					{auth ? (
+						<ul className="navbar-nav">
+							<Link to="/backoffice" className="btn btn-outline-dark ">
+								<i className="fa fa-sign-in me-1"></i>Backoffice
+							</Link>
+							<button
+								className="btn btn-outline-dark "
+								onClick={() => dispatch(logout())}
+							>
+								<i className="fa fa-sign-in me-1 "></i>Cerrar Sesion
+							</button>
+						</ul>
+					) : (
+						<ul className="navbar-nav">
+							<li className="nav-item">
+								<Link className="btn btn-outline-dark " to="/login">
+									<i className="fa fa-sign-in me-1 "></i>Log In
+								</Link>
+							</li>
+							<li className="nav-item">
+								<Link className="btn btn-outline-dark " to="/register">
+									<i className="fa fa-user-plus me-1 "></i>Registrarse
+								</Link>
+							</li>
+						</ul>
+					)}
 				</div>
 			</div>
 		</nav>
