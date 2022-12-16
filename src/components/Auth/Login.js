@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-import { Link } from 'react-router-dom'
-
+import { Link, useNavigate } from 'react-router-dom'
+import {
+	selectorAuth,
+	logged,
+	clearState,
+} from '../../redux/slices/auth-slices'
+import { useSelector, useDispatch } from 'react-redux'
 const schemaLogin = yup.object().shape({
 	email: yup
 		.string()
@@ -22,11 +27,20 @@ const Login = () => {
 		formState: { errors },
 		reset,
 	} = useForm({ resolver: yupResolver(schemaLogin) })
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
+	const { auth, user, status, errors: errorsAuth } = useSelector(selectorAuth)
 
+	useEffect(() => {
+		if (auth) navigate('/backoffice')
+	}, [auth])
+	useEffect(() => {
+		dispatch(clearState())
+	}, [])
 	const onSubmitHandler = (data) => {
-		console.log(errors)
-		console.log(data)
-		/* reset() */
+		const body = data
+		dispatch(logged(body))
+		/* 	reset() */
 	}
 	let img =
 		'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg'
@@ -53,6 +67,12 @@ const Login = () => {
 									Email
 								</label>
 								<p className="text-danger">{errors.email?.message}</p>
+								{errorsAuth?.map(
+									(err) =>
+										err.param == 'email' && (
+											<div className="text-danger">{err.msg}</div>
+										)
+								)}
 							</div>
 							<div className="form-outline mb-4">
 								<input
@@ -65,7 +85,13 @@ const Login = () => {
 								<label class="form-label" for="form1Example23">
 									Contraseña
 								</label>
-								<p className="text-danger">{errors?.password?.message}</p>
+								<p className="text-danger">{errors?.password?.message}</p>{' '}
+								{errorsAuth?.map(
+									(err) =>
+										err.param == 'password' && (
+											<div className="text-danger">{err.msg}</div>
+										)
+								)}
 							</div>
 
 							<button
@@ -76,6 +102,11 @@ const Login = () => {
 								Iniciar sesion
 							</button>
 						</form>
+						{errorsAuth?.map(
+							(err) =>
+								err.msg &&
+								!err.param && <div className="text-danger">{err.msg}</div>
+						)}
 						<p className="mt-3">
 							Aún no tienes cuenta?
 							<Link to="/register"> Registrarme</Link>
