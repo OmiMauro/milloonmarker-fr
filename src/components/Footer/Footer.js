@@ -1,87 +1,59 @@
 import React from 'react'
 import './styles.css'
 import { Link } from 'react-router-dom'
+import {} from 'react-fontawesome'
 const Footer = () => {
 	return (
 		<footer id="footer">
 			<div className="footer-top">
 				<div className="container">
 					<div className="row">
-						<div className="col-lg-3 col-md-6 footer-contact">
-							<h3>Arsha</h3>
+						<div className="col-lg-4 col-md-6 footer-contact">
+							<h3>
+								<Link to="/">{process.env.REACT_APP_NAME}</Link>
+							</h3>
 							<p>
-								A108 Adam Street <br />
+								Direccion <br />
 								New York, NY 535022
 								<br />
 								United States <br />
 								<br />
-								<strong>Phone:</strong> +1 5589 55488 55
+								<strong>Celular:</strong> +1 5589 55488 55
 								<br />
-								<strong>Email:</strong> info@example.com
+								<strong>Correo Electronico:</strong> info@example.com
 								<br />
 							</p>
 						</div>
 
-						<div className="col-lg-3 col-md-6 footer-links">
-							<h4>Useful Links</h4>
+						<div className="col-lg-4 col-md-6 footer-links">
+							<h4>Enlaces útiles</h4>
 							<ul>
 								<li>
-									<i className="bx bx-chevron-right"></i> <a href="#">Home</a>
+									<i className="bx bx-chevron-right"></i>{' '}
+									<Link to="/">Inicio</Link>
 								</li>
 								<li>
 									<i className="bx bx-chevron-right"></i>{' '}
-									<a href="#">About us</a>
+									<Link to="/about">Nosotros</Link>
+								</li>
+
+								<li>
+									<i className="bx bx-chevron-right"></i>
+									<Link to="/about">Terminos del servicio</Link>
 								</li>
 								<li>
-									<i className="bx bx-chevron-right"></i>{' '}
-									<a href="#">Services</a>
-								</li>
-								<li>
-									<i className="bx bx-chevron-right"></i>{' '}
-									<a href="#">Terms of service</a>
-								</li>
-								<li>
-									<i className="bx bx-chevron-right"></i>{' '}
-									<a href="#">Privacy policy</a>
+									<i className="bx bx-chevron-right"></i>
+									<Link to="/about">Politicas de privacidad</Link>
 								</li>
 							</ul>
 						</div>
 
-						<div className="col-lg-3 col-md-6 footer-links">
-							<h4>Our Services</h4>
-							<ul>
-								<li>
-									<i className="bx bx-chevron-right"></i>{' '}
-									<a href="#">Web Design</a>
-								</li>
-								<li>
-									<i className="bx bx-chevron-right"></i>{' '}
-									<a href="#">Web Development</a>
-								</li>
-								<li>
-									<i className="bx bx-chevron-right"></i>{' '}
-									<a href="#">Product Management</a>
-								</li>
-								<li>
-									<i className="bx bx-chevron-right"></i>{' '}
-									<a href="#">Marketing</a>
-								</li>
-								<li>
-									<i className="bx bx-chevron-right"></i>{' '}
-									<a href="#">Graphic Design</a>
-								</li>
-							</ul>
-						</div>
-
-						<div className="col-lg-3 col-md-6 footer-links">
-							<h4>Our Social Networks</h4>
-							<p>
-								Cras fermentum odio eu feugiat lide par naso tierra videa magna
-								derita valies
-							</p>
+						<div className="col-lg-4 col-md-6 footer-links">
+							<h4>Nuestras redes sociales</h4>
+							<p>Lorem ipsum</p>
 							<div className="social-links mt-3">
 								<a href="#" className="twitter">
-									<i className="bx bxl-twitter"></i>
+									<i className="bx bxl-twitter fa-facebook"></i>
 								</a>
 								<a href="#" className="facebook">
 									<i className="bx bxl-facebook"></i>
@@ -105,7 +77,9 @@ const Footer = () => {
 				<div className="copyright">
 					&copy; Copyright{' '}
 					<strong>
-						<span>Arsha</span>
+						<span className="text-uppercase fw-bold">
+							{process.env.REACT_APP_NAME}
+						</span>
 					</strong>
 					. All Rights Reserved
 				</div>
