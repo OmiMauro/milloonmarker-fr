@@ -1,4 +1,4 @@
-import { post, get } from './public-api-services'
+import { post, get } from './pubic-api-services'
 
 const ENDPOINT_LOGIN = process.env.REACT_APP_API_AUTH_LOGIN_ENDPOINT
 const ENDPOINT_REGISTER = process.env.REACT_APP_API_AUTH_REGISTER_ENDPOINT
