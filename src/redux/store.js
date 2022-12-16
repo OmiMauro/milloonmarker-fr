@@ -6,9 +6,10 @@ import thunk from 'redux-thunk'
 
 //reducers
 import authReducer from './slices/auth-slices.js'
-
+import userReducer from './slices/user-slice.js'
 const reducers = combineReducers({
 	auth: authReducer,
+	user: userReducer,
 })
 
 const persistConfig = {
