@@ -115,7 +115,9 @@ const authSlice = createSlice({
 			state.status = STATUS.SUCCESSFUL
 			state.auth = true
 			state.token = payload.token
+			console.log(payload.user)
 			state.user = payload.user
+
 			localStorage.setItem('token', payload.token)
 			state.errors = []
 		},
@@ -129,6 +131,7 @@ const authSlice = createSlice({
 		[registered.rejected]: (state, { payload }) => {
 			state.status = STATUS.FAILED
 			state.errors = payload.response.data.errors
+			state.auth = false
 		},
 		[registered.fulfilled]: (state, { payload }) => {
 			state.status = STATUS.SUCCESSFUL

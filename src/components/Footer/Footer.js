@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import {} from 'react-fontawesome'
 const Footer = () => {
 	return (
-		<footer id="footer">
+		<footer id="footer" className="mt-2">
 			<div className="footer-top">
 				<div className="container">
 					<div className="row">

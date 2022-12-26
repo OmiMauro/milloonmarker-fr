@@ -42,6 +42,9 @@ const Login = () => {
 		dispatch(logged(body))
 		/* 	reset() */
 	}
+	useEffect(() => {
+		dispatch(clearState())
+	}, [])
 	let img =
 		'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg'
 	return (
@@ -63,7 +66,7 @@ const Login = () => {
 									required
 									className="form-control form-control-lg"
 								/>
-								<label class="form-label" for="form1Example13">
+								<label className="form-label" htmlFor="form1Example13">
 									Email
 								</label>
 								<p className="text-danger">{errors.email?.message}</p>
@@ -82,7 +85,7 @@ const Login = () => {
 									required
 									className="form-control form-control-lg"
 								/>
-								<label class="form-label" for="form1Example23">
+								<label className="form-label" htmlFor="form1Example23">
 									Contraseña
 								</label>
 								<p className="text-danger">{errors?.password?.message}</p>{' '}

@@ -2,9 +2,10 @@
 # Hero Section
 --------------------------------------------------------------*/
 #hero {
-	width: 100%;
-	height: 80vh;
-	background: #37517e;
+	/* width: 100%;
+	height: 80vh; */
+	/* background: #37517e; */
+	background: green;
 }
 
 #hero .container {
@@ -36,7 +37,8 @@
 	transition: 0.5s;
 	margin: 10px 0 0 0;
 	color: #fff;
-	background: #47b2e4;
+	/* 	background: #47b2e4; */
+	background: black;
 }
 
 #hero .btn-get-started:hover {

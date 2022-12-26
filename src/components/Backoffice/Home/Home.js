@@ -1,15 +1,16 @@
 import { linksUser, linksAdmin } from '../SideNav/Links'
 import { selectorAuth } from '../../../redux/slices/auth-slices'
 import { useSelector } from 'react-redux'
+import { ROLES } from '../../../constants'
 
 const Home = () => {
 	const { user } = useSelector(selectorAuth)
-
+	console.log(user)
 	return (
 		<section className="container">
 			<div className="">
 				<div className="row">
-					{user.roleId === 2 &&
+					{user.roleId === ROLES.ADMIN &&
 						linksAdmin.map((item, index) => {
 							return (
 								<div className="col-xl-3 col-md-6 mb-4" key={index}>
@@ -23,7 +24,7 @@ const Home = () => {
 								</div>
 							)
 						})}
-					{user.roleId === 1 &&
+					{user.roleId === ROLES.STANDARD &&
 						linksUser.map((item, index) => {
 							return (
 								<div className="col-xl-3 col-md-6 mb-4" key={index}>

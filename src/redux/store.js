@@ -9,7 +9,7 @@ import authReducer from './slices/auth-slices.js'
 import userReducer from './slices/user-slice.js'
 const reducers = combineReducers({
 	auth: authReducer,
-	user: userReducer,
+	/* 	user: userReducer, */
 })
 
 const persistConfig = {

@@ -1,26 +1,40 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
 import * as yup from 'yup'
-
+import { useDispatch, useSelector } from 'react-redux'
+import {
+	selectorAuth,
+	clearState,
+	registered,
+	logged,
+} from '../../redux/slices/auth-slices'
+import { useNavigate } from 'react-router-dom'
 const schemaRegister = yup.object().shape({
 	email: yup
 		.string()
-		.min(5, 'El email debe ser minimo 5 caracteres')
 		.email('Ingrese un email valido')
 		.required('El email es requerido'),
 	password: yup
 		.string()
 		.min(6, 'La contraseña debe ser minimo de 6 caracteres')
 		.required('La contraseña es requerida'),
-	name: yup.string().required('Ingrese el nombre'),
-	lastname: yup
-		.string()
-		.min(6, 'La contraseña debe ser minimo de 6 caracteres'),
-	phone: yup.string(),
 	repeatPassword: yup.string(),
+	name: yup.string().required('Ingrese el nombre'),
+	lastname: yup.string().required('El apellido es requerido'),
+	phone: yup.string().required('El celular es requerido'),
 })
 const Register = () => {
+	const dispatch = useDispatch()
+	const {
+		auth,
+		user,
+		status,
+		errors: errorApi,
+		msg,
+	} = useSelector(selectorAuth)
+
+	const navigate = useNavigate()
 	const {
 		register,
 		handleSubmit,
@@ -28,14 +42,20 @@ const Register = () => {
 		reset,
 	} = useForm({ resolver: yupResolver(schemaRegister) })
 
+	/* 	useEffect(() => {
+		if (auth) navigate('/backoffice')
+	}, [auth]) */
+	useEffect(() => {
+		dispatch(clearState())
+	}, [])
 	const onSubmitHandler = (data) => {
-		console.log(data)
-		/* reset() */
+		dispatch(registered(data))
+		/* 	reset() */
 	}
 	let img =
 		'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg'
 	return (
-		<section className="vh-100">
+		<section className="">
 			<div className="container py-5 h-100">
 				<div className="row d-flex align-items-center justify-content-center h-100">
 					<h1 className="fw-bold text-center text-uppercase">Registrarme</h1>
@@ -52,8 +72,14 @@ const Register = () => {
 									required
 									className="form-control form-control-lg"
 								/>
-								<label class="form-label">Nombre</label>
+								<label className="form-label">Nombre</label>
 								<p className="text-danger">{errors.name?.message}</p>
+								{errorApi?.map(
+									(err) =>
+										err.param == 'name' && (
+											<div className="text-danger">{err.msg}</div>
+										)
+								)}
 							</div>
 							<div className="form-outline mb-4">
 								<input
@@ -63,8 +89,15 @@ const Register = () => {
 									required
 									className="form-control form-control-lg"
 								/>
-								<label class="form-label">Apellido</label>
+
+								<label className="form-label">Apellido</label>
 								<p className="text-danger">{errors.lastname?.message}</p>
+								{errorApi?.map(
+									(err) =>
+										err.param == 'lastname' && (
+											<div className="text-danger">{err.msg}</div>
+										)
+								)}
 							</div>
 							<div className="form-outline mb-4">
 								<input
@@ -74,8 +107,31 @@ const Register = () => {
 									required
 									className="form-control form-control-lg"
 								/>
-								<label class="form-label">Email</label>
+								<label className="form-label">Email</label>
 								<p className="text-danger">{errors.email?.message}</p>
+								{errorApi?.map(
+									(err) =>
+										err.param == 'email' && (
+											<div className="text-danger">{err.msg}</div>
+										)
+								)}
+							</div>
+							<div className="form-outline mb-4">
+								<input
+									{...register('phone')}
+									placeholder="+541160001122"
+									type="phone"
+									required
+									className="form-control form-control-lg"
+								/>
+								<label className="form-label">Celular</label>
+								<p className="text-danger">{errors.phone?.message}</p>
+								{errorApi?.map(
+									(err) =>
+										err.param == 'phone' && (
+											<div className="text-danger">{err.msg}</div>
+										)
+								)}
 							</div>
 							<div className="form-outline mb-4">
 								<input
@@ -85,10 +141,16 @@ const Register = () => {
 									required
 									className="form-control form-control-lg"
 								/>
-								<label class="form-label" htmlFor="form1Example23">
+								<label className="form-label" htmlFor="form1Example23">
 									Contraseña
 								</label>
 								<p>{errors?.password?.message}</p>
+								{errorApi?.map(
+									(err) =>
+										err.param == 'password' && (
+											<div className="text-danger">{err.msg}</div>
+										)
+								)}
 							</div>
 							<div className="form-outline mb-4">
 								<input
@@ -98,10 +160,23 @@ const Register = () => {
 									required
 									className="form-control form-control-lg"
 								/>
-								<label class="form-label" htmlFor="repeatPassword">
+								<label className="form-label" htmlFor="repeatPassword">
 									Repita la contraseña
 								</label>
+								{errorApi?.map(
+									(err) =>
+										err.param == 'repeatPassword' && (
+											<div className="text-danger">{err.msg}</div>
+										)
+								)}
 								<p>{errors?.repeatPassword?.message}</p>
+							</div>
+							<div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4 text-danger">
+								{errorApi?.map(
+									(err) =>
+										err.msg &&
+										!err.param && <div className="text-danger">{err.msg}</div>
+								)}
 							</div>
 							<button
 								type="submit"
@@ -131,6 +206,7 @@ const Register = () => {
 								<i className="fab fa-twitter me-2"></i>Continue with Twitter
 							</a> */}
 						</form>
+						{msg && <p className="text-success text-center">{msg}</p>}
 					</div>
 				</div>
 			</div>

@@ -7,9 +7,9 @@ import { selectorUsers } from '../../../redux/slices/user-slice'
 import { linksAdmin, linksUser } from './Links'
 
 const SideNav = () => {
-	/* 	const { user } = useSelector(selectorAuth)
-	let { user: userId } = useSelector(selectorUsers) */
-	let user = { roleId: 2 }
+	const { user } = useSelector(selectorAuth)
+	/* let { user: userId } = useSelector(selectorUsers) */
+	/* 	let user = { roleId: 2 }*/
 	let userId = { _id: 1 }
 	const dispatch = useDispatch()
 	return (

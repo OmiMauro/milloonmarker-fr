@@ -2,9 +2,16 @@ import React from 'react'
 import './styles.css'
 import { Link } from 'react-router-dom'
 import logo from './favicon.png'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+	selectorAuth,
+	logout,
+	clearState,
+} from '../../redux/slices/auth-slices'
 
 const Navbar = () => {
-	let auth, dispatch, logout
+	const dispatch = useDispatch()
+	const { auth, user } = useSelector(selectorAuth)
 	return (
 		<nav
 			className="navbar navbar-expand-lg py-3 shadow-sm bg-white py-3"
