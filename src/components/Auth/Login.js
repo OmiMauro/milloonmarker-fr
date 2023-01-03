@@ -12,7 +12,6 @@ import { useSelector, useDispatch } from 'react-redux'
 const schemaLogin = yup.object().shape({
 	email: yup
 		.string()
-		.min(5, 'El email debe ser minimo 5 caracteres')
 		.email('Ingrese un email valido')
 		.required('El email es requerido'),
 	password: yup
@@ -42,9 +41,7 @@ const Login = () => {
 		dispatch(logged(body))
 		/* 	reset() */
 	}
-	useEffect(() => {
-		dispatch(clearState())
-	}, [])
+
 	let img =
 		'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg'
 	return (
@@ -125,26 +122,3 @@ const Login = () => {
 }
 
 export default Login
-{
-	/*
-							<div className="divider d-flex align-items-center my-4">
-								<p className="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
-							</div>
-
-						 <a
-								className="btn btn-primary btn-lg btn-block"
-								style="background-color: #3b5998"
-								href="#!"
-								role="button"
-							>
-								<i className="fab fa-facebook-f me-2"></i>Continue with Facebook
-							</a>
-							<a
-								className="btn btn-primary btn-lg btn-block"
-								style="background-color: #55acee"
-								href="#!"
-								role="button"
-							>
-								<i className="fab fa-twitter me-2"></i>Continue with Twitter
-							</a> */
-}
