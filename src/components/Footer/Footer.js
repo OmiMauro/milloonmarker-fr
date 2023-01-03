@@ -3,6 +3,7 @@ import './styles.css'
 import { Link } from 'react-router-dom'
 import {} from 'react-fontawesome'
 const Footer = () => {
+	const date = new Date()
 	return (
 		<footer id="footer" className="mt-2">
 			<div className="footer-top">
@@ -73,15 +74,15 @@ const Footer = () => {
 				</div>
 			</div>
 
-			<div className="container footer-bottom clearfix">
-				<div className="copyright">
-					&copy; Copyright{' '}
+			<div className="container footer-bottom clearfix text-center">
+				<div className="copyright ">
+					&copy;{' '}
 					<strong>
 						<span className="text-uppercase fw-bold">
 							{process.env.REACT_APP_NAME}
 						</span>
 					</strong>
-					. All Rights Reserved
+					. All Rights Reserved - {date.getFullYear()}
 				</div>
 			</div>
 		</footer>

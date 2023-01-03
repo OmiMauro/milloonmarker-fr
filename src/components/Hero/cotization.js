@@ -10,3 +10,8 @@ export const getCotization = async () => {
 		console.log(error)
 	}
 }
+
+export const formatToNumber = (value) => {
+	const convertedValue = parseFloat(value.replace('.', '').replace(',', '.'))
+	return !isNaN(convertedValue) ? convertedValue.toFixed(2) : 'No cotiza'
+}

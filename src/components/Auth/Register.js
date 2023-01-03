@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { yupResolver } from '@hookform/resolvers/yup'
+import { Link } from 'react-router-dom'
 import * as yup from 'yup'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -42,9 +43,6 @@ const Register = () => {
 		reset,
 	} = useForm({ resolver: yupResolver(schemaRegister) })
 
-	/* 	useEffect(() => {
-		if (auth) navigate('/backoffice')
-	}, [auth]) */
 	useEffect(() => {
 		dispatch(clearState())
 	}, [])
@@ -207,6 +205,10 @@ const Register = () => {
 							</a> */}
 						</form>
 						{msg && <p className="text-success text-center">{msg}</p>}
+						<p className="mt-3">
+							Ya tienes cuenta?
+							<Link to="/login"> Iniciar sesion</Link>
+						</p>
 					</div>
 				</div>
 			</div>

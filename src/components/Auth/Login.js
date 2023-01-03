@@ -96,7 +96,10 @@ const Login = () => {
 										)
 								)}
 							</div>
-
+							<p>
+								Olvidaste tu contraseña?{' '}
+								<Link to="/forgot-password">Recuperar</Link>
+							</p>
 							<button
 								type="submit"
 								className="btn btn-primary btn-lg btn-block"

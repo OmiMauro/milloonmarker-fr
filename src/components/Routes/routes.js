@@ -15,17 +15,22 @@ import ProfileContainer from '../../containers/Profile/ProfileContainer'
 import AdminPanelContainer from '../../containers/AdminPanel/AdminPanelContainer'
 import BuyContainer from '../../containers/Buy/BuyContainer'
 import RetractContainer from '../../containers/Retract/RetractContainer'
+import TermsAndConditionsPage from '../../pages/TermsAndConditionsPage'
+import ConfirmEmailPage from '../../pages/ConfirmEmailPage'
+import ForgotPasswordPage from '../../pages/ForgotPasswordPage'
+import ResetPasswordPage from '../../pages/ResetPasswordPage'
 const routesPublics = [
 	{ path: '/', element: HomePage },
 	{ path: 'login', element: LoginPage },
 	{ path: 'register', element: RegisterPage },
 	{ path: 'about', element: AboutPage },
 	{ path: 'contact', element: ContactPage },
+	{ path: 'terms-and-conditions', TermsAndConditionsPage },
 	{ path: 'unauthorized', element: Error401Page },
-	/* { path: 'services', element: ServicePage },
+	/* { path: 'services', element: ServicePage },*/
 	{ path: 'forgot-password', element: ForgotPasswordPage },
 	{ path: 'reset-password/:token', element: ResetPasswordPage },
-	{ path: 'confirm-email/:token', element: ConfirmEmailPage }, */
+	{ path: 'confirm-email/:token', element: ConfirmEmailPage },
 	{ path: '*', element: Error404Page },
 ]
 

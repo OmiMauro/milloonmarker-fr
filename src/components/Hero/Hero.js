@@ -3,11 +3,11 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import './styles.css'
 import img from './hero-img.png'
-import { getCotization } from './cotization'
+import { getCotization, formatToNumber } from './cotization'
 
 const Hero = () => {
 	const [values, setValues] = useState({
-		ars: 100,
+		ars: 0,
 		dolars: 0,
 		priceDolar: 0,
 	})
@@ -17,14 +17,19 @@ const Hero = () => {
 			const response = await getCotization()
 			setValues({
 				...values,
-				priceDolar: 325 /*  Number(response.casa.venta) */,
+				priceDolar: formatToNumber(response.casa.venta),
 			})
 		}
 		fn()
 	}, [])
 	const handleChange = (e) => {
-		let calc = Number(e.target.value) / priceDolar - 0.2
-		setValues({ ...values, ars: e.target.value, dolars: calc })
+		let convertedDolars = e.target.value.replace(/[^0-9]/gi, '') / priceDolar
+		let dolarsWithcomition = convertedDolars - convertedDolars * 0.02
+		setValues({
+			...values,
+			ars: e.target.value.replace(/[^0-9]/gi, ''),
+			dolars: dolarsWithcomition,
+		})
 	}
 	return (
 		<section id="hero" className="d-flex align-items-center">
@@ -45,7 +50,6 @@ const Hero = () => {
 									<input
 										onChange={handleChange}
 										placeholder="100000"
-										type="number"
 										required
 										value={ars}
 										className="form-control form-control-lg"
@@ -56,32 +60,16 @@ const Hero = () => {
 								</div>
 								<div className="form-outline mb-4">
 									<input
-										placeholder=""
-										type="number"
 										required
 										readOnly
 										value={dolars}
 										className="form-control form-control-lg"
 									/>
-									<label className="form-label" htmlFor="form1Example13">
+									<label className="form-label" htmlFor="form1Example143">
 										Recibís USD
 									</label>
 								</div>
-								<button
-									type="submit"
-									className="btn btn-primary btn-lg btn-block"
-								>
-									Comprar
-								</button>
 							</form>
-
-							{/* <a
-								href="https://www.youtube.com/watch?v=jDDaplaOz7Q"
-								className="glightbox btn-watch-video"
-							>
-								<i className="bi bi-play-circle"></i>
-								<span>Watch Video</span>
-							</a> */}
 						</div>
 					</div>
 					<div
