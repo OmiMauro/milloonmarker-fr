@@ -42,7 +42,7 @@ const ForgotPassword = () => {
 	let img =
 		'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg'
 	return (
-		<section className="vh-100">
+		<section className="">
 			<div className="container py-5 h-100">
 				<div className="row d-flex align-items-center justify-content-center h-100">
 					<h1 className="fw-bold text-center text-uppercase">

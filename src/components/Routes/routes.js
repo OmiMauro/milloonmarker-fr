@@ -29,7 +29,7 @@ const routesPublics = [
 	{ path: 'unauthorized', element: Error401Page },
 	/* { path: 'services', element: ServicePage },*/
 	{ path: 'forgot-password', element: ForgotPasswordPage },
-	{ path: 'reset-password/:token', element: ResetPasswordPage },
+	{ path: 'reset-password//:token', element: ResetPasswordPage },
 	{ path: 'confirm-email/:token', element: ConfirmEmailPage },
 	{ path: '*', element: Error404Page },
 ]

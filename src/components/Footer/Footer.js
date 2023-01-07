@@ -10,8 +10,9 @@ const Footer = () => {
 				<div className="container">
 					<div className="row">
 						<div className="col-lg-4 col-md-6 footer-contact">
-							<h3>
-								<Link to="/">{process.env.REACT_APP_NAME}</Link>
+							<h3 className="">
+								<Link to="/"></Link>
+								{process.env.REACT_APP_NAME}
 							</h3>
 							<p>
 								Direccion <br />

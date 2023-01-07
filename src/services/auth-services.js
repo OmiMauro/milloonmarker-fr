@@ -25,5 +25,6 @@ export const resetPwd = async (data, token) => {
 }
 
 export const verificationEmail = async (token) => {
+	console.log(ENDPOINT_AUTH)
 	return await post(`${ENDPOINT_AUTH}/confirm-account/${token}`)
 }
