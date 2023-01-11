@@ -139,6 +139,7 @@ const authSlice = createSlice({
 			state.user = payload.user
 			state.token = payload.token
 			state.errors = []
+			state.msg = payload.msg
 		},
 		[forgotPassword.pending]: (state) => {
 			state.status = STATUS.PENDING

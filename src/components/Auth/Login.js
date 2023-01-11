@@ -28,7 +28,13 @@ const Login = () => {
 	} = useForm({ resolver: yupResolver(schemaLogin) })
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const { auth, user, status, errors: errorsAuth } = useSelector(selectorAuth)
+	const {
+		auth,
+		user,
+		status,
+		errors: errorsAuth,
+		msg,
+	} = useSelector(selectorAuth)
 
 	useEffect(() => {
 		if (auth) navigate('/backoffice')
@@ -39,13 +45,6 @@ const Login = () => {
 	const onSubmitHandler = (data) => {
 		const body = data
 		dispatch(logged(body))
-		/* 	reset() */
-	}
-
-	if (hoy < ayer) {
-		console.log('tomar')
-	} else {
-		console.log('tomar agua')
 	}
 
 	let img =
@@ -106,7 +105,6 @@ const Login = () => {
 							<button
 								type="submit"
 								className="btn btn-primary btn-lg btn-block"
-								/* onClick={handleSubmit(onSubmitHandler)} */
 							>
 								Iniciar sesion
 							</button>
@@ -116,6 +114,7 @@ const Login = () => {
 								err.msg &&
 								!err.param && <div className="text-danger">{err.msg}</div>
 						)}
+						{msg && <p className="text-info">{msg}</p>}
 						<p className="mt-3">
 							Aún no tienes cuenta?
 							<Link to="/register"> Registrarme</Link>

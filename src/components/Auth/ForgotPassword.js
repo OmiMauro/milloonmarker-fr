@@ -26,7 +26,7 @@ const ForgotPassword = () => {
 	} = useForm({ resolver: yupResolver(schemaLogin) })
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const { auth, user, status, errors: errorsAuth } = useSelector(selectorAuth)
+	const { auth, status, errors: errorsAuth, msg } = useSelector(selectorAuth)
 
 	useEffect(() => {
 		if (auth) navigate('/backoffice')
@@ -34,7 +34,7 @@ const ForgotPassword = () => {
 	const onSubmitHandler = (data) => {
 		const body = data
 		dispatch(forgotPassword(body))
-		/* 	reset() */
+		reset()
 	}
 	useEffect(() => {
 		dispatch(clearState())
@@ -86,6 +86,7 @@ const ForgotPassword = () => {
 								err.msg &&
 								!err.param && <div className="text-danger">{err.msg}</div>
 						)}
+						{msg && <p className="text-success">{msg}</p>}
 						<p className="mt-3">
 							Aún no tienes cuenta?
 							<Link to="/register"> Registrarme</Link>

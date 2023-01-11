@@ -31,7 +31,7 @@ const Register = () => {
 		auth,
 		user,
 		status,
-		errors: errorApi,
+		errors: errorsAuth,
 		msg,
 	} = useSelector(selectorAuth)
 
@@ -48,7 +48,6 @@ const Register = () => {
 	}, [])
 	const onSubmitHandler = (data) => {
 		dispatch(registered(data))
-		/* 	reset() */
 	}
 	let img =
 		'https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg'
@@ -72,7 +71,7 @@ const Register = () => {
 								/>
 								<label className="form-label">Nombre</label>
 								<p className="text-danger">{errors.name?.message}</p>
-								{errorApi?.map(
+								{errorsAuth?.map(
 									(err) =>
 										err.param == 'name' && (
 											<div className="text-danger">{err.msg}</div>
@@ -90,7 +89,7 @@ const Register = () => {
 
 								<label className="form-label">Apellido</label>
 								<p className="text-danger">{errors.lastname?.message}</p>
-								{errorApi?.map(
+								{errorsAuth?.map(
 									(err) =>
 										err.param == 'lastname' && (
 											<div className="text-danger">{err.msg}</div>
@@ -107,7 +106,7 @@ const Register = () => {
 								/>
 								<label className="form-label">Email</label>
 								<p className="text-danger">{errors.email?.message}</p>
-								{errorApi?.map(
+								{errorsAuth?.map(
 									(err) =>
 										err.param == 'email' && (
 											<div className="text-danger">{err.msg}</div>
@@ -124,7 +123,7 @@ const Register = () => {
 								/>
 								<label className="form-label">Celular</label>
 								<p className="text-danger">{errors.phone?.message}</p>
-								{errorApi?.map(
+								{errorsAuth?.map(
 									(err) =>
 										err.param == 'phone' && (
 											<div className="text-danger">{err.msg}</div>
@@ -143,7 +142,7 @@ const Register = () => {
 									Contraseña
 								</label>
 								<p>{errors?.password?.message}</p>
-								{errorApi?.map(
+								{errorsAuth?.map(
 									(err) =>
 										err.param == 'password' && (
 											<div className="text-danger">{err.msg}</div>
@@ -161,7 +160,7 @@ const Register = () => {
 								<label className="form-label" htmlFor="repeatPassword">
 									Repita la contraseña
 								</label>
-								{errorApi?.map(
+								{errorsAuth?.map(
 									(err) =>
 										err.param == 'repeatPassword' && (
 											<div className="text-danger">{err.msg}</div>
@@ -170,7 +169,7 @@ const Register = () => {
 								<p>{errors?.repeatPassword?.message}</p>
 							</div>
 							<div className="d-flex justify-content-center mx-4 mb-3 mb-lg-4 text-danger">
-								{errorApi?.map(
+								{errorsAuth?.map(
 									(err) =>
 										err.msg &&
 										!err.param && <div className="text-danger">{err.msg}</div>
@@ -182,28 +181,12 @@ const Register = () => {
 							>
 								Registrarme
 							</button>
-							{/*
-							<div className="divider d-flex align-items-center my-4">
-								<p className="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
-							</div>
-
-						 <a
-								className="btn btn-primary btn-lg btn-block"
-								style="background-color: #3b5998"
-								href="#!"
-								role="button"
-							>
-								<i className="fab fa-facebook-f me-2"></i>Continue with Facebook
-							</a>
-							<a
-								className="btn btn-primary btn-lg btn-block"
-								style="background-color: #55acee"
-								href="#!"
-								role="button"
-							>
-								<i className="fab fa-twitter me-2"></i>Continue with Twitter
-							</a> */}
 						</form>
+						{errorsAuth?.map(
+							(err) =>
+								err.msg &&
+								!err.param && <div className="text-danger">{err.msg}</div>
+						)}
 						{msg && <p className="text-success text-center">{msg}</p>}
 						<p className="mt-3">
 							Ya tienes cuenta?
